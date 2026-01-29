@@ -52,7 +52,7 @@
             position: relative;
         }
         
-        /* Multi-layered animated background */
+        /* Optimized animations for performance */
         body::before {
             content: '';
             position: fixed;
@@ -61,20 +61,19 @@
             width: 100%;
             height: 100%;
             background-image: 
-                radial-gradient(2px 2px at 15% 20%, rgba(240, 249, 255, 0.8), transparent),
-                radial-gradient(3px 3px at 85% 30%, rgba(251, 191, 36, 0.6), transparent),
-                radial-gradient(1px 1px at 45% 60%, rgba(192, 132, 252, 0.7), transparent),
-                radial-gradient(2px 2px at 70% 80%, rgba(244, 114, 182, 0.5), transparent),
-                radial-gradient(1px 1px at 25% 90%, rgba(14, 165, 233, 0.6), transparent),
-                radial-gradient(3px 3px at 90% 10%, rgba(247, 147, 26, 0.4), transparent),
-                radial-gradient(1px 1px at 60% 40%, rgba(168, 85, 247, 0.8), transparent);
-            background-size: 400% 400%;
-            animation: cosmic-stars 180s linear infinite;
-            opacity: 0.6;
+                radial-gradient(1px 1px at 15% 20%, rgba(240, 249, 255, 0.6), transparent),
+                radial-gradient(2px 2px at 85% 30%, rgba(251, 191, 36, 0.4), transparent),
+                radial-gradient(1px 1px at 45% 60%, rgba(192, 132, 252, 0.5), transparent),
+                radial-gradient(1px 1px at 70% 80%, rgba(244, 114, 182, 0.3), transparent),
+                radial-gradient(1px 1px at 25% 90%, rgba(14, 165, 233, 0.4), transparent),
+                radial-gradient(2px 2px at 90% 10%, rgba(247, 147, 26, 0.3), transparent);
+            background-size: 200% 200%;
+            animation: cosmic-stars 120s linear infinite;
+            opacity: 0.4;
             z-index: -3;
         }
         
-        /* Nebula clouds layer */
+        /* Simplified nebula clouds */
         body::after {
             content: '';
             position: fixed;
@@ -83,30 +82,22 @@
             width: 100%;
             height: 100%;
             background: 
-                radial-gradient(ellipse at 20% 25%, rgba(192, 132, 252, 0.15) 0%, transparent 40%),
-                radial-gradient(ellipse at 80% 75%, rgba(244, 114, 182, 0.12) 0%, transparent 35%),
-                radial-gradient(ellipse at 50% 50%, rgba(14, 165, 233, 0.08) 0%, transparent 30%),
-                radial-gradient(ellipse at 10% 85%, rgba(251, 191, 36, 0.1) 0%, transparent 25%);
-            background-size: 300% 300%;
-            animation: nebula-drift 90s ease-in-out infinite;
-            opacity: 0.4;
+                radial-gradient(ellipse at 20% 25%, rgba(192, 132, 252, 0.08) 0%, transparent 40%),
+                radial-gradient(ellipse at 80% 75%, rgba(244, 114, 182, 0.06) 0%, transparent 35%);
+            background-size: 150% 150%;
+            animation: nebula-drift 60s ease-in-out infinite;
+            opacity: 0.2;
             z-index: -2;
         }
         
         @keyframes cosmic-stars {
-            0% { transform: translateY(0) rotate(0deg) scale(1); }
-            25% { transform: translateY(-10%) rotate(90deg) scale(1.1); }
-            50% { transform: translateY(-20%) rotate(180deg) scale(0.9); }
-            75% { transform: translateY(-10%) rotate(270deg) scale(1.05); }
-            100% { transform: translateY(0) rotate(360deg) scale(1); }
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100%) rotate(360deg); }
         }
         
         @keyframes nebula-drift {
-            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
-            20% { transform: translate(-30px, -15px) scale(1.2); opacity: 0.6; }
-            40% { transform: translate(20px, -25px) scale(0.8); opacity: 0.3; }
-            60% { transform: translate(-15px, 20px) scale(1.1); opacity: 0.5; }
-            80% { transform: translate(25px, 10px) scale(0.9); opacity: 0.4; }
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-20px, -10px); }
         }
         
         .orbitron {
@@ -376,6 +367,9 @@
                     <a href="#download" class="hover:text-orange-400 transition transform hover:scale-110">Download</a>
                     <a href="#pricing" class="hover:text-orange-400 transition transform hover:scale-110">Pricing</a>
                     <a href="#support" class="hover:text-orange-400 transition transform hover:scale-110">Support</a>
+                    <button onclick="showAccountModal()" class="bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 hover:bg-white/20 transition transform hover:scale-110">
+                        <i class="fas fa-user mr-2"></i>Account
+                    </button>
                 </div>
             </div>
         </div>
@@ -498,7 +492,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col md:flex-row gap-4 justify-center">
-                        <a href="./downloads/AsteroidTweakingUtility-Premium-NEW.exe" class="download-btn btn-premium inline-flex items-center justify-center space-x-2">
+                        <a href="download.html" class="download-btn btn-premium inline-flex items-center justify-center space-x-2">
                             <i class="fas fa-download"></i>
                             <span>Download Now (176 MB)</span>
                         </a>
@@ -556,11 +550,11 @@
                             <div class="space-y-3">
                                 <div class="contact-item flex items-center space-x-3">
                                     <i class="fas fa-envelope text-green-400"></i>
-                                    <span>Email: support@asteroidtweaks.com</span>
+                                    <span>Email: asteroidtweaks@gmail.com</span>
                                 </div>
                                 <div class="contact-item flex items-center space-x-3">
                                     <i class="fab fa-discord text-purple-400"></i>
-                                    <span>Discord: AsteroidTweaks#1234</span>
+                                    <span>Discord: https://discord.gg/YJJD8nHG</span>
                                 </div>
                                 <div class="contact-item flex items-center space-x-3">
                                     <i class="fab fa-twitter text-blue-400"></i>
@@ -627,6 +621,63 @@
         </div>
     </footer>
     
+    <!-- Account Modal -->
+    <div id="accountModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="card-glow rounded-2xl p-8 max-w-md w-full">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold">Account</h3>
+                    <button onclick="hideAccountModal()" class="text-gray-400 hover:text-white">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <!-- Sign In Form -->
+                <div id="signInForm">
+                    <h4 class="text-xl font-bold mb-4 text-orange-400">Sign In</h4>
+                    <input type="email" id="signInEmail" placeholder="Email address" class="w-full px-4 py-3 rounded-lg bg-black/30 border border-white/20 mb-3">
+                    <input type="password" id="signInPassword" placeholder="Password" class="w-full px-4 py-3 rounded-lg bg-black/30 border border-white/20 mb-4">
+                    <button onclick="signIn()" class="w-full btn-premium mb-3">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Sign In
+                    </button>
+                    <p class="text-center text-gray-400">
+                        Don't have an account? 
+                        <button onclick="showSignUpForm()" class="text-orange-400 hover:text-orange-300">Sign Up</button>
+                    </p>
+                </div>
+                
+                <!-- Sign Up Form -->
+                <div id="signUpForm" class="hidden">
+                    <h4 class="text-xl font-bold mb-4 text-green-400">Create Account</h4>
+                    <input type="text" id="signUpName" placeholder="Full name" class="w-full px-4 py-3 rounded-lg bg-black/30 border border-white/20 mb-3">
+                    <input type="email" id="signUpEmail" placeholder="Email address" class="w-full px-4 py-3 rounded-lg bg-black/30 border border-white/20 mb-3">
+                    <input type="password" id="signUpPassword" placeholder="Password" class="w-full px-4 py-3 rounded-lg bg-black/30 border border-white/20 mb-3">
+                    <input type="password" id="signUpConfirmPassword" placeholder="Confirm password" class="w-full px-4 py-3 rounded-lg bg-black/30 border border-white/20 mb-4">
+                    <button onclick="signUp()" class="w-full btn-premium mb-3">
+                        <i class="fas fa-user-plus mr-2"></i>Create Account
+                    </button>
+                    <p class="text-center text-gray-400">
+                        Already have an account? 
+                        <button onclick="showSignInForm()" class="text-green-400 hover:text-green-300">Sign In</button>
+                    </p>
+                </div>
+                
+                <!-- Account Info (when signed in) -->
+                <div id="accountInfo" class="hidden">
+                    <h4 class="text-xl font-bold mb-4 text-green-400">Welcome Back!</h4>
+                    <div class="bg-black/30 rounded-lg p-4 mb-4">
+                        <p class="text-gray-300"><i class="fas fa-user mr-2"></i><span id="userName">User</span></p>
+                        <p class="text-gray-300"><i class="fas fa-envelope mr-2"></i><span id="userEmail">user@example.com</span></p>
+                        <p class="text-gray-300"><i class="fas fa-star mr-2"></i>Premium Member</p>
+                    </div>
+                    <button onclick="signOut()" class="w-full bg-red-500/20 border border-red-500/50 text-red-400 px-4 py-3 rounded-lg hover:bg-red-500/30 transition">
+                        <i class="fas fa-sign-out-alt mr-2"></i>Sign Out
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- License Modal -->
     <div id="licenseModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden">
         <div class="flex items-center justify-center min-h-screen p-4">
@@ -647,6 +698,104 @@
     </div>
     
     <script>
+        // Account Management
+        let currentUser = null;
+        
+        function showAccountModal() {
+            document.getElementById('accountModal').classList.remove('hidden');
+            if (currentUser) {
+                showAccountInfo();
+            } else {
+                showSignInForm();
+            }
+        }
+        
+        function hideAccountModal() {
+            document.getElementById('accountModal').classList.add('hidden');
+        }
+        
+        function showSignInForm() {
+            document.getElementById('signInForm').classList.remove('hidden');
+            document.getElementById('signUpForm').classList.add('hidden');
+            document.getElementById('accountInfo').classList.add('hidden');
+        }
+        
+        function showSignUpForm() {
+            document.getElementById('signInForm').classList.add('hidden');
+            document.getElementById('signUpForm').classList.remove('hidden');
+            document.getElementById('accountInfo').classList.add('hidden');
+        }
+        
+        function showAccountInfo() {
+            document.getElementById('signInForm').classList.add('hidden');
+            document.getElementById('signUpForm').classList.add('hidden');
+            document.getElementById('accountInfo').classList.remove('hidden');
+            
+            if (currentUser) {
+                document.getElementById('userName').textContent = currentUser.name;
+                document.getElementById('userEmail').textContent = currentUser.email;
+            }
+        }
+        
+        function signIn() {
+            const email = document.getElementById('signInEmail').value;
+            const password = document.getElementById('signInPassword').value;
+            
+            if (!email || !password) {
+                alert('Please enter both email and password');
+                return;
+            }
+            
+            // Simulate sign in (in real app, this would be an API call)
+            currentUser = {
+                name: email.split('@')[0],
+                email: email
+            };
+            
+            localStorage.setItem('asteroidUser', JSON.stringify(currentUser));
+            showAccountInfo();
+            showNotification('Successfully signed in!', 'success');
+        }
+        
+        function signUp() {
+            const name = document.getElementById('signUpName').value;
+            const email = document.getElementById('signUpEmail').value;
+            const password = document.getElementById('signUpPassword').value;
+            const confirmPassword = document.getElementById('signUpConfirmPassword').value;
+            
+            if (!name || !email || !password || !confirmPassword) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            
+            // Simulate sign up (in real app, this would be an API call)
+            currentUser = { name, email };
+            localStorage.setItem('asteroidUser', JSON.stringify(currentUser));
+            showAccountInfo();
+            showNotification('Account created successfully!', 'success');
+        }
+        
+        function signOut() {
+            currentUser = null;
+            localStorage.removeItem('asteroidUser');
+            showSignInForm();
+            showNotification('Successfully signed out!', 'info');
+        }
+        
+        // Check for existing session
+        window.addEventListener('load', function() {
+            const savedUser = localStorage.getItem('asteroidUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+            }
+        });
+        
+        // License Modal
         function showLicenseModal() {
             document.getElementById('licenseModal').classList.remove('hidden');
         }
@@ -658,6 +807,34 @@
         function getLicense() {
             alert('License key generation will be implemented with payment processing.');
             hideLicenseModal();
+        }
+        
+        // Notification system
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-20 right-4 px-6 py-3 rounded-lg text-white z-50 transform translate-x-full transition-transform duration-300`;
+            
+            if (type === 'success') {
+                notification.classList.add('bg-green-500');
+            } else if (type === 'error') {
+                notification.classList.add('bg-red-500');
+            } else {
+                notification.classList.add('bg-blue-500');
+            }
+            
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+            }, 100);
+            
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
         }
         
         // Smooth scrolling

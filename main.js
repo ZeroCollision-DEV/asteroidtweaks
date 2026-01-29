@@ -323,19 +323,207 @@ ipcMain.handle('cleanup-temp-files', async () => {
     } catch (error) {
         return { success: false, message: error.message };
     }
-});
+}
 
-ipcMain.handle('empty-recycle-bin', async () => {
+// Handle cleanup
+ipcMain.handle('cleanup-system', async () => {
     try {
-        // PowerShell command to empty recycle bin
-        const command = 'Clear-RecycleBin -Force -ErrorAction SilentlyContinue';
-        await executePowerShell(command);
+        // Empty recycle bin
+        await execAsync('powershell.exe -Command "Clear-RecycleBin -Force"');
         
-        return { success: true, message: 'Recycle bin emptied successfully' };
+        // Clean temp files
+        await execAsync('powershell.exe -Command "Remove-Item -Path $env:TEMP\\* -Recurse -Force -ErrorAction SilentlyContinue"');
+        
+        // Clean browser cache (simplified)
+        await execAsync('powershell.exe -Command "Get-ChildItem -Path $env:LOCALAPPDATA\\Google\\Chrome\\User Data\\Default\\Cache -Recurse | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue"');
+        
+        return { success: true, message: 'System cleanup completed successfully' };
     } catch (error) {
-        return { success: false, message: error.message };
+        return { success: false, message: `Cleanup failed: ${error.message}` };
     }
 });
+
+// Sign-in functionality
+ipcMain.handle('show-sign-in', async () => {
+    const result = await dialog.showMessageBox(mainWindow, {
+        type: 'info',
+        title: 'Sign In Required',
+        message: 'Please sign in to use Asteroid Tweaking Utility Premium',
+        detail: 'You can create a free account or sign in with your existing credentials.',
+        buttons: ['Sign In', 'Create Account', 'Cancel'],
+        defaultId: 0
+    });
+
+    if (result.response === 0) {
+        // Sign In
+        return await showSignInDialog();
+    } else if (result.response === 1) {
+        // Create Account
+        return await showSignUpDialog();
+    }
+    
+    return { success: false };
+});
+
+async function showSignInDialog() {
+    // Create a simple sign-in window
+    const signInWindow = new BrowserWindow({
+        width: 400,
+        height: 500,
+        parent: mainWindow,
+        modal: true,
+        frame: false,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false
+        }
+    });
+
+    signInWindow.loadURL('data:text/html;charset=utf-8,' + encodeURIComponent(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <style>
+                body {
+                    font-family: 'Inter', sans-serif;
+                    background: linear-gradient(135deg, #0f0f23 0%, #1e1b4b 100%);
+                    color: white;
+                    margin: 0;
+                    padding: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    height: 100vh;
+                }
+                .header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 20px;
+                }
+                .title {
+                    font-size: 18px;
+                    font-weight: bold;
+                }
+                .close {
+                    background: none;
+                    border: none;
+                    color: white;
+                    font-size: 20px;
+                    cursor: pointer;
+                }
+                .form-group {
+                    margin-bottom: 15px;
+                }
+                label {
+                    display: block;
+                    margin-bottom: 5px;
+                    color: #ccc;
+                }
+                input {
+                    width: 100%;
+                    padding: 10px;
+                    border: 1px solid #444;
+                    border-radius: 5px;
+                    background: rgba(255,255,255,0.1);
+                    color: white;
+                    box-sizing: border-box;
+                }
+                button {
+                    background: linear-gradient(135deg, #fbbf24 0%, #fb923c 100%);
+                    color: #0f0f23;
+                    border: none;
+                    padding: 12px 20px;
+                    border-radius: 5px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    width: 100%;
+                    margin-top: 10px;
+                }
+                button:hover {
+                    transform: translateY(-2px);
+                }
+                .link {
+                    text-align: center;
+                    margin-top: 15px;
+                }
+                .link a {
+                    color: #fbbf24;
+                    text-decoration: none;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <div class="title">Sign In</div>
+                <button class="close" onclick="window.close()">×</button>
+            </div>
+            
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="your@email.com">
+            </div>
+            
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="••••••••">
+            </div>
+            
+            <button onclick="signIn()">Sign In</button>
+            
+            <div class="link">
+                <a href="#" onclick="createAccount()">Create Account</a>
+            </div>
+            
+            <script>
+                const { ipcRenderer } = require('electron');
+                
+                function signIn() {
+                    const email = document.getElementById('email').value;
+                    const password = document.getElementById('password').value;
+                    
+                    if (!email || !password) {
+                        alert('Please enter email and password');
+                        return;
+                    }
+                    
+                    // Store user session
+                    localStorage.setItem('asteroidUser', JSON.stringify({
+                        email: email,
+                        name: email.split('@')[0],
+                        signedIn: true
+                    }));
+                    
+                    ipcRenderer.send('sign-in-success', { email, name: email.split('@')[0] });
+                    window.close();
+                }
+                
+                function createAccount() {
+                    // Redirect to website for account creation
+                    const { shell } = require('electron');
+                    shell.openExternal('https://asteroidtweaks.netlify.app');
+                    window.close();
+                }
+            </script>
+        </body>
+        </html>
+    `));
+
+    return new Promise((resolve) => {
+        ipcMain.once('sign-in-success', (event, user) => {
+            resolve({ success: true, user });
+        });
+        
+        signInWindow.on('closed', () => {
+            resolve({ success: false });
+        });
+    });
+}
+
+async function showSignUpDialog() {
+    const { shell } = require('electron');
+    await shell.openExternal('https://asteroidtweaks.netlify.app');
+    return { success: false, redirect: true };
+}
 
 ipcMain.handle('create-backup', async () => {
     try {
