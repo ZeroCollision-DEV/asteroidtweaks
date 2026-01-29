@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asteroid Tweaking Utility</title>
+    <link rel="stylesheet" href="styles-premium.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-rocket"></i>
+                    <h1>Asteroid Tweaking Utility</h1>
+                </div>
+                <div class="license-status" id="licenseStatus">
+                    <span class="free-badge">FREE VERSION</span>
+                    <button class="upgrade-btn" id="upgradeBtn">
+                        <i class="fas fa-crown"></i> Upgrade to Premium
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-layout">
+            <!-- Sidebar -->
+            <nav class="sidebar">
+                <ul class="nav-menu">
+                    <li><a href="#dashboard" class="nav-link active" data-section="dashboard">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a></li>
+                    <li><a href="#performance" class="nav-link" data-section="performance">
+                        <i class="fas fa-bolt"></i>
+                        <span>Performance</span>
+                        <span class="premium-badge">PRO</span>
+                    </a></li>
+                    <li><a href="#gaming" class="nav-link" data-section="gaming">
+                        <i class="fas fa-gamepad"></i>
+                        <span>Gaming</span>
+                        <span class="premium-badge">PRO</span>
+                    </a></li>
+                    <li><a href="#privacy" class="nav-link" data-section="privacy">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Privacy & Security</span>
+                    </a></li>
+                    <li><a href="#ui" class="nav-link" data-section="ui">
+                        <i class="fas fa-palette"></i>
+                        <span>UI Customization</span>
+                    </a></li>
+                    <li><a href="#network" class="nav-link" data-section="network">
+                        <i class="fas fa-network-wired"></i>
+                        <span>Network</span>
+                        <span class="premium-badge">PRO</span>
+                    </a></li>
+                    <li><a href="#cleanup" class="nav-link" data-section="cleanup">
+                        <i class="fas fa-broom"></i>
+                        <span>System Cleanup</span>
+                    </a></li>
+                    <li><a href="#advanced" class="nav-link" data-section="advanced">
+                        <i class="fas fa-cogs"></i>
+                        <span>Advanced</span>
+                        <span class="premium-badge">PRO</span>
+                    </a></li>
+                </ul>
+            </nav>
+
+            <!-- Content Area -->
+            <main class="content">
+                <!-- Dashboard Section -->
+                <section id="dashboard" class="section active">
+                    <div class="section-header">
+                        <h2>System Dashboard</h2>
+                        <p>Monitor your system performance and apply quick optimizations</p>
+                    </div>
+
+                    <div class="dashboard-grid">
+                        <!-- System Info Card -->
+                        <div class="info-card">
+                            <div class="card-header">
+                                <i class="fas fa-desktop"></i>
+                                <h3>System Information</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="info-item">
+                                    <span class="label">Operating System:</span>
+                                    <span class="value" id="osInfo">Detecting...</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Processor:</span>
+                                    <span class="value" id="cpuInfo">Detecting...</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Memory:</span>
+                                    <span class="value" id="ramInfo">Detecting...</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Graphics:</span>
+                                    <span class="value" id="gpuInfo">Detecting...</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">Storage:</span>
+                                    <span class="value" id="storageInfo">Detecting...</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Performance Monitor -->
+                        <div class="performance-card">
+                            <div class="card-header">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>Performance Monitor</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="metric">
+                                    <div class="metric-header">
+                                        <span>CPU Usage</span>
+                                        <span class="metric-value" id="cpuUsage">0%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill cpu-progress" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-header">
+                                        <span>Memory Usage</span>
+                                        <span class="metric-value" id="ramUsage">0%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill ram-progress" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="metric">
+                                    <div class="metric-header">
+                                        <span>Disk Usage</span>
+                                        <span class="metric-value" id="diskUsage">0%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill disk-progress" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="quick-actions-card">
+                            <div class="card-header">
+                                <i class="fas fa-bolt"></i>
+                                <h3>Quick Actions</h3>
+                            </div>
+                            <div class="card-content">
+                                <button class="action-btn" onclick="quickOptimize()">
+                                    <i class="fas fa-magic"></i>
+                                    Quick Optimize
+                                </button>
+                                <button class="action-btn" onclick="createBackup()">
+                                    <i class="fas fa-save"></i>
+                                    Create Backup
+                                </button>
+                                <button class="action-btn premium-only" onclick="showPremiumDialog()">
+                                    <i class="fas fa-crown"></i>
+                                    Deep Clean
+                                    <span class="premium-badge">PRO</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Performance Section (Premium) -->
+                <section id="performance" class="section">
+                    <div class="section-header">
+                        <h2>Performance Optimization</h2>
+                        <p>Advanced performance tweaks for maximum system speed</p>
+                        <div class="premium-notice">
+                            <i class="fas fa-lock"></i>
+                            <span>Premium Feature - Upgrade to unlock</span>
+                        </div>
+                    </div>
+
+                    <div class="tweaks-grid">
+                        <div class="tweak-card premium-locked">
+                            <div class="tweak-header">
+                                <h3>Startup Optimization</h3>
+                                <span class="premium-badge">PRO</span>
+                            </div>
+                            <div class="tweak-content">
+                                <div class="tweak-list">
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" disabled>
+                                            <span class="toggle-slider"></span>
+                                            <span>Disable unnecessary startup programs</span>
+                                        </label>
+                                    </div>
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" disabled>
+                                            <span class="toggle-slider"></span>
+                                            <span>Enable ultra-fast boot</span>
+                                        </label>
+                                    </div>
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" disabled>
+                                            <span class="toggle-slider"></span>
+                                            <span>Optimize boot sequence</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tweak-card premium-locked">
+                            <div class="tweak-header">
+                                <h3>Memory Management</h3>
+                                <span class="premium-badge">PRO</span>
+                            </div>
+                            <div class="tweak-content">
+                                <div class="tweak-list">
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" disabled>
+                                            <span class="toggle-slider"></span>
+                                            <span>Optimize page file settings</span>
+                                        </label>
+                                    </div>
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" disabled>
+                                            <span class="toggle-slider"></span>
+                                            <span>Enable memory compression</span>
+                                        </label>
+                                    </div>
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" disabled>
+                                            <span class="toggle-slider"></span>
+                                            <span>Disable unnecessary services</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Gaming Section (Premium) -->
+                <section id="gaming" class="section">
+                    <div class="section-header">
+                        <h2>Gaming Optimization</h2>
+                        <p>Professional gaming tweaks for maximum FPS</p>
+                        <div class="premium-notice">
+                            <i class="fas fa-lock"></i>
+                            <span>Premium Feature - Upgrade to unlock</span>
+                        </div>
+                    </div>
+
+                    <div class="tweaks-grid">
+                        <div class="tweak-card premium-locked">
+                            <div class="tweak-header">
+                                <h3>Graphics Optimization</h3>
+                                <span class="premium-badge">PRO</span>
+                            </div>
+                            <div class="tweak-content">
+                                <div class="tweak-list">
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" disabled>
+                                            <span class="toggle-slider"></span>
+                                            <span>Optimize GPU settings</span>
+                                        </label>
+                                    </div>
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" disabled>
+                                            <span class="toggle-slider"></span>
+                                            <span>Disable visual effects</span>
+                                        </label>
+                                    </div>
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" disabled>
+                                            <span class="toggle-slider"></span>
+                                            <span>Enable game mode</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tweak-card premium-locked">
+                            <div class="tweak-header">
+                                <h3>Network Optimization</h3>
+                                <span class="premium-badge">PRO</span>
+                            </div>
+                            <div class="tweak-content">
+                                <div class="tweak-list">
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" disabled>
+                                            <span class="toggle-slider"></span>
+                                            <span>Optimize TCP/IP settings</span>
+                                        </label>
+                                    </div>
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" disabled>
+                                            <span class="toggle-slider"></span>
+                                            <span>Disable network throttling</span>
+                                        </label>
+                                    </div>
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" disabled>
+                                            <span class="toggle-slider"></span>
+                                            <span>Optimize DNS for gaming</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Privacy Section (Free) -->
+                <section id="privacy" class="section">
+                    <div class="section-header">
+                        <h2>Privacy & Security</h2>
+                        <p>Protect your privacy and enhance system security</p>
+                    </div>
+
+                    <div class="tweaks-grid">
+                        <div class="tweak-card">
+                            <div class="tweak-header">
+                                <h3>Privacy Protection</h3>
+                            </div>
+                            <div class="tweak-content">
+                                <div class="tweak-list">
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" id="disableTelemetry">
+                                            <span class="toggle-slider"></span>
+                                            <span>Disable telemetry</span>
+                                        </label>
+                                    </div>
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" id="disableAdvertising">
+                                            <span class="toggle-slider"></span>
+                                            <span>Disable advertising ID</span>
+                                        </label>
+                                    </div>
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" id="disableLocation">
+                                            <span class="toggle-slider"></span>
+                                            <span>Disable location tracking</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tweak-card">
+                            <div class="tweak-header">
+                                <h3>Security Enhancements</h3>
+                            </div>
+                            <div class="tweak-content">
+                                <div class="tweak-list">
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" id="enableDefender">
+                                            <span class="toggle-slider"></span>
+                                            <span>Enable Windows Defender</span>
+                                        </label>
+                                    </div>
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" id="enableFirewall">
+                                            <span class="toggle-slider"></span>
+                                            <span>Enable Windows Firewall</span>
+                                        </label>
+                                    </div>
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" id="enableUAC">
+                                            <span class="toggle-slider"></span>
+                                            <span>Enable User Account Control</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- UI Customization Section (Free) -->
+                <section id="ui" class="section">
+                    <div class="section-header">
+                        <h2>UI Customization</h2>
+                        <p>Personalize your Windows experience</p>
+                    </div>
+
+                    <div class="tweaks-grid">
+                        <div class="tweak-card">
+                            <div class="tweak-header">
+                                <h3>Visual Effects</h3>
+                            </div>
+                            <div class="tweak-content">
+                                <div class="tweak-list">
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" id="enableAnimations">
+                                            <span class="toggle-slider"></span>
+                                            <span>Enable animations</span>
+                                        </label>
+                                    </div>
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" id="enableTransparency">
+                                            <span class="toggle-slider"></span>
+                                            <span>Enable transparency</span>
+                                        </label>
+                                    </div>
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" id="enableShadows">
+                                            <span class="toggle-slider"></span>
+                                            <span>Enable window shadows</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tweak-card">
+                            <div class="tweak-header">
+                                <h3>Taskbar Customization</h3>
+                            </div>
+                            <div class="tweak-content">
+                                <div class="tweak-list">
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" id="hideSearch">
+                                            <span class="toggle-slider"></span>
+                                            <span>Hide search bar</span>
+                                        </label>
+                                    </div>
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" id="hideTaskView">
+                                            <span class="toggle-slider"></span>
+                                            <span>Hide task view button</span>
+                                        </label>
+                                    </div>
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" id="smallIcons">
+                                            <span class="toggle-slider"></span>
+                                            <span>Use small taskbar icons</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Network Section (Premium) -->
+                <section id="network" class="section">
+                    <div class="section-header">
+                        <h2>Network Optimization</h2>
+                        <p>Advanced network tweaks for maximum speed</p>
+                        <div class="premium-notice">
+                            <i class="fas fa-lock"></i>
+                            <span>Premium Feature - Upgrade to unlock</span>
+                        </div>
+                    </div>
+
+                    <div class="tweaks-grid">
+                        <div class="tweak-card premium-locked">
+                            <div class="tweak-header">
+                                <h3>Connection Optimization</h3>
+                                <span class="premium-badge">PRO</span>
+                            </div>
+                            <div class="tweak-content">
+                                <div class="tweak-list">
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" disabled>
+                                            <span class="toggle-slider"></span>
+                                            <span>Optimize TCP settings</span>
+                                        </label>
+                                    </div>
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" disabled>
+                                            <span class="toggle-slider"></span>
+                                            <span>Disable Nagle's algorithm</span>
+                                        </label>
+                                    </div>
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" disabled>
+                                            <span class="toggle-slider"></span>
+                                            <span>Optimize DNS cache</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- System Cleanup Section (Free) -->
+                <section id="cleanup" class="section">
+                    <div class="section-header">
+                        <h2>System Cleanup</h2>
+                        <p>Remove junk files and optimize storage</p>
+                    </div>
+
+                    <div class="cleanup-tools">
+                        <div class="tool-card">
+                            <div class="tool-header">
+                                <i class="fas fa-trash"></i>
+                                <h3>Temporary Files</h3>
+                            </div>
+                            <p>Clean temporary files, cache, and junk data</p>
+                            <button class="btn btn-primary" onclick="cleanupTempFiles()">
+                                <i class="fas fa-play"></i> Clean Now
+                            </button>
+                        </div>
+
+                        <div class="tool-card">
+                            <div class="tool-header">
+                                <i class="fas fa-recycle"></i>
+                                <h3>Recycle Bin</h3>
+                            </div>
+                            <p>Empty recycle bin permanently</p>
+                            <button class="btn btn-primary" onclick="emptyRecycleBin()">
+                                <i class="fas fa-play"></i> Empty Now
+                            </button>
+                        </div>
+
+                        <div class="tool-card">
+                            <div class="tool-header">
+                                <i class="fas fa-broom"></i>
+                                <h3>System Cache</h3>
+                            </div>
+                            <p>Clean system cache and prefetch data</p>
+                            <button class="btn btn-primary premium-only" onclick="showPremiumDialog()">
+                                <i class="fas fa-crown"></i> Deep Clean
+                                <span class="premium-badge">PRO</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Advanced Section (Premium) -->
+                <section id="advanced" class="section">
+                    <div class="section-header">
+                        <h2>Advanced Tweaks</h2>
+                        <p>Expert-level system modifications</p>
+                        <div class="premium-notice">
+                            <i class="fas fa-lock"></i>
+                            <span>Premium Feature - Upgrade to unlock</span>
+                        </div>
+                    </div>
+
+                    <div class="tweaks-grid">
+                        <div class="tweak-card premium-locked">
+                            <div class="tweak-header">
+                                <h3>Registry Optimization</h3>
+                                <span class="premium-badge">PRO</span>
+                            </div>
+                            <div class="tweak-content">
+                                <div class="tweak-list">
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" disabled>
+                                            <span class="toggle-slider"></span>
+                                            <span>Optimize registry access</span>
+                                        </label>
+                                    </div>
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" disabled>
+                                            <span class="toggle-slider"></span>
+                                            <span>Clean registry entries</span>
+                                        </label>
+                                    </div>
+                                    <div class="tweak-item">
+                                        <label class="toggle-label">
+                                            <input type="checkbox" disabled>
+                                            <span class="toggle-slider"></span>
+                                            <span>Optimize kernel parameters</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- Action Bar -->
+        <div class="action-bar">
+            <button class="btn btn-success" onclick="applyAllTweaks()">
+                <i class="fas fa-check"></i> Apply All Tweaks
+            </button>
+            <button class="btn btn-secondary" onclick="resetAllTweaks()">
+                <i class="fas fa-undo"></i> Reset All
+            </button>
+            <button class="btn btn-info" onclick="createBackup()">
+                <i class="fas fa-save"></i> Create Backup
+            </button>
+        </div>
+    </div>
+
+    <!-- License Modal -->
+    <div id="licenseModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Enter Premium License Key</h3>
+                <button class="close-btn" onclick="closeLicenseModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Enter your premium license key to unlock all features:</p>
+                <input type="text" id="licenseKeyInput" placeholder="Enter license key..." class="license-input">
+                <div class="license-info">
+                    <p><strong>Premium License Keys:</strong> 50 unique keys available</p>
+                    <p>Each key can only be used once and is locked to your hardware</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeLicenseModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="activateLicense()">Activate</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="notification" class="notification">
+        <div class="notification-content">
+            <i class="notification-icon"></i>
+            <span id="notificationText"></span>
+        </div>
+        <button class="notification-close" onclick="hideNotification()">&times;</button>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
