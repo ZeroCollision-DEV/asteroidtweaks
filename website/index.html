@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asteroid Tweaking Utility - Premium Windows Optimization</title>
+    <meta name="description" content="Advanced Windows system optimization utility with premium features. Unlock your PC's full potential with Asteroid Tweaking Utility.">
+    <meta name="keywords" content="Windows tweaking, optimization, premium, system utility, performance, registry">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Asteroid Tweaking Utility - Premium Windows Optimization">
+    <meta property="og:description" content="Advanced Windows system optimization utility with premium features">
+    <meta property="og:image" content="./assets/images/asteroid-logo.png">
+    <meta property="og:url" content="https://asteroidtweaks.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #8b5cf6;
+            --accent-color: #ec4899;
+            --dark-bg: #0f0f23;
+            --card-bg: #1e1b4b;
+            --premium-gold: #fbbf24;
+            --asteroid-orange: #fb923c;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1e1b4b 50%, #312e81 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        .orbitron {
+            font-family: 'Orbitron', monospace;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-glow {
+            background: rgba(30, 27, 75, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .card-glow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.3);
+        }
+        
+        .btn-premium {
+            background: linear-gradient(135deg, #fbbf24 0%, #fb923c 100%);
+            color: #0f0f23;
+            font-weight: 700;
+            padding: 15px 30px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+        }
+        
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(251, 191, 36, 0.6);
+        }
+        
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, white, transparent),
+                radial-gradient(2px 2px at 60% 70%, white, transparent),
+                radial-gradient(1px 1px at 50% 50%, white, transparent);
+            background-size: 200% 200%;
+            animation: stars 120s linear infinite;
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        @keyframes stars {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100%); }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="stars"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-black/30 backdrop-blur-md z-50 border-b border-white/10">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-rocket text-3xl text-orange-400"></i>
+                    <h1 class="text-2xl font-bold orbitron">Asteroid Tweaks</h1>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#features" class="hover:text-orange-400 transition">Features</a>
+                    <a href="#download" class="hover:text-orange-400 transition">Download</a>
+                    <a href="#pricing" class="hover:text-orange-400 transition">Pricing</a>
+                    <a href="#support" class="hover:text-orange-400 transition">Support</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center px-6 pt-20">
+        <div class="container mx-auto text-center">
+            <div class="float-animation mb-8">
+                <i class="fas fa-meteor text-8xl text-orange-400 mb-6"></i>
+            </div>
+            <h1 class="text-6xl md:text-7xl font-bold orbitron mb-6">
+                <span class="gradient-text">Asteroid</span><br>
+                <span class="text-orange-400">Tweaking Utility</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 text-gray-300 max-w-3xl mx-auto">
+                Transform your Windows experience with premium system optimization. 
+                Unlock advanced tweaks, boost performance, and customize your PC like never before.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center mb-12">
+                <a href="#download" class="btn-premium inline-flex items-center justify-center space-x-2">
+                    <i class="fas fa-download"></i>
+                    <span>Download Premium</span>
+                </a>
+                <a href="#features" class="bg-white/10 backdrop-blur-md px-8 py-4 rounded-full border border-white/20 hover:bg-white/20 transition inline-flex items-center justify-center space-x-2">
+                    <i class="fas fa-play"></i>
+                    <span>Watch Demo</span>
+                </a>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-orange-400">50+</div>
+                    <div class="text-sm text-gray-400">Premium Tweaks</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-orange-400">Win 11</div>
+                    <div class="text-sm text-gray-400">Fully Compatible</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-orange-400">HWID</div>
+                    <div class="text-sm text-gray-400">License Locked</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-orange-400">Real</div>
+                    <div class="text-sm text-gray-400">PowerShell Tweaks</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 orbitron">
+                Premium <span class="gradient-text">Features</span>
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card-glow rounded-2xl p-8">
+                    <i class="fas fa-rocket text-4xl text-orange-400 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-4">Performance Boost</h3>
+                    <p class="text-gray-300">Advanced system optimization with real registry tweaks and PowerShell commands for maximum performance.</p>
+                </div>
+                <div class="card-glow rounded-2xl p-8">
+                    <i class="fas fa-shield-alt text-4xl text-blue-400 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-4">Privacy Protection</h3>
+                    <p class="text-gray-300">Disable telemetry, block ads, and enhance your privacy with comprehensive security tweaks.</p>
+                </div>
+                <div class="card-glow rounded-2xl p-8">
+                    <i class="fas fa-palette text-4xl text-purple-400 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-4">UI Customization</h3>
+                    <p class="text-gray-300">Personalize your Windows interface with advanced visual tweaks and theme modifications.</p>
+                </div>
+                <div class="card-glow rounded-2xl p-8">
+                    <i class="fas fa-gamepad text-4xl text-green-400 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-4">Gaming Mode</h3>
+                    <p class="text-gray-300">Optimize your system for gaming with dedicated performance profiles and tweaks.</p>
+                </div>
+                <div class="card-glow rounded-2xl p-8">
+                    <i class="fas fa-network-wired text-4xl text-yellow-400 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-4">Network Optimization</h3>
+                    <p class="text-gray-300">Boost your internet speed and optimize network settings for better connectivity.</p>
+                </div>
+                <div class="card-glow rounded-2xl p-8">
+                    <i class="fas fa-broom text-4xl text-red-400 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-4">System Cleanup</h3>
+                    <p class="text-gray-300">Remove junk files, clean registry, and optimize storage with powerful cleanup tools.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Download Section -->
+    <section id="download" class="py-20 px-6 bg-black/30">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8 orbitron">
+                Download <span class="gradient-text">Premium</span>
+            </h2>
+            <p class="text-xl mb-12 text-gray-300 max-w-2xl mx-auto">
+                Get the full premium experience with 50+ advanced tweaks and real system optimization.
+            </p>
+            <div class="max-w-4xl mx-auto">
+                <div class="card-glow rounded-2xl p-8 mb-8">
+                    <h3 class="text-2xl font-bold mb-4">Asteroid Tweaking Utility Premium</h3>
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div class="text-left">
+                            <ul class="space-y-2">
+                                <li><i class="fas fa-check text-green-400 mr-2"></i>50+ Premium Tweaks</li>
+                                <li><i class="fas fa-check text-green-400 mr-2"></i>Windows 11 Compatible</li>
+                                <li><i class="fas fa-check text-green-400 mr-2"></i>Real PowerShell Commands</li>
+                                <li><i class="fas fa-check text-green-400 mr-2"></i>HWID License Protection</li>
+                            </ul>
+                        </div>
+                        <div class="text-left">
+                            <ul class="space-y-2">
+                                <li><i class="fas fa-check text-green-400 mr-2"></i>Premium Space UI</li>
+                                <li><i class="fas fa-check text-green-400 mr-2"></i>Advanced Animations</li>
+                                <li><i class="fas fa-check text-green-400 mr-2"></i>System Backup</li>
+                                <li><i class="fas fa-check text-green-400 mr-2"></i>Priority Support</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row gap-4 justify-center">
+                        <a href="./downloads/AsteroidTweakingUtility-Premium-NEW.exe" class="btn-premium inline-flex items-center justify-center space-x-2">
+                            <i class="fas fa-download"></i>
+                            <span>Download Now (176 MB)</span>
+                        </a>
+                        <div class="bg-white/10 backdrop-blur-md px-6 py-4 rounded-full border border-white/20">
+                            <span class="text-orange-400 font-bold">Version 1.0.0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center text-gray-400">
+                    <p><i class="fas fa-shield-alt mr-2"></i>Secure download • Virus-free • Windows 10/11 compatible</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 px-6">
+        <div class="container mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 orbitron">
+                Premium <span class="gradient-text">Licensing</span>
+            </h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="card-glow rounded-2xl p-8 text-center">
+                    <h3 class="text-3xl font-bold mb-4">Premium License</h3>
+                    <div class="text-5xl font-bold text-orange-400 mb-4">One-Time</div>
+                    <p class="text-xl mb-8 text-gray-300">Get your unique license key and unlock all premium features forever.</p>
+                    <div class="bg-black/30 rounded-xl p-6 mb-8">
+                        <h4 class="text-xl font-bold mb-4">Premium License System</h4>
+                        <p class="text-gray-300">Each license key is unique and locked to your hardware for maximum security.</p>
+                        <p class="text-gray-400 mt-2">One-time purchase • Lifetime access • Priority support</p>
+                    </div>
+                    <button onclick="showLicenseModal()" class="btn-premium">
+                        <i class="fas fa-key mr-2"></i>
+                        Get License Key
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Support Section -->
+    <section id="support" class="py-20 px-6 bg-black/30">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-16 orbitron">
+                Premium <span class="gradient-text">Support</span>
+            </h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="card-glow rounded-2xl p-6">
+                        <i class="fas fa-book text-4xl text-blue-400 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">Documentation</h3>
+                        <p class="text-gray-300">Complete guide with all features and tutorials</p>
+                    </div>
+                    <div class="card-glow rounded-2xl p-6">
+                        <i class="fas fa-comments text-4xl text-green-400 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">Live Support</h3>
+                        <p class="text-gray-300">Get help from our premium support team</p>
+                    </div>
+                    <div class="card-glow rounded-2xl p-6">
+                        <i class="fas fa-sync text-4xl text-purple-400 mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">Free Updates</h3>
+                        <p class="text-gray-300">Lifetime updates with new features and tweaks</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-white/10">
+        <div class="container mx-auto text-center">
+            <div class="flex justify-center items-center space-x-3 mb-6">
+                <i class="fas fa-rocket text-2xl text-orange-400"></i>
+                <h3 class="text-xl font-bold orbitron">Asteroid Tweaking Utility</h3>
+            </div>
+            <p class="text-gray-400 mb-4">© 2024 Asteroid Development Team. Premium Windows Optimization Utility.</p>
+            <div class="flex justify-center space-x-6">
+                <a href="#" class="text-gray-400 hover:text-orange-400 transition">
+                    <i class="fab fa-twitter text-xl"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-orange-400 transition">
+                    <i class="fab fa-discord text-xl"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-orange-400 transition">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- License Modal -->
+    <div id="licenseModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="card-glow rounded-2xl p-8 max-w-md w-full">
+                <h3 class="text-2xl font-bold mb-4">Get Your License Key</h3>
+                <p class="text-gray-300 mb-6">Enter your email to receive your unique premium license key.</p>
+                <input type="email" placeholder="your@email.com" class="w-full px-4 py-3 rounded-lg bg-black/30 border border-white/20 mb-4">
+                <div class="flex gap-4">
+                    <button onclick="hideLicenseModal()" class="flex-1 px-6 py-3 rounded-lg bg-white/10 border border-white/20 hover:bg-white/20 transition">
+                        Cancel
+                    </button>
+                    <button onclick="getLicense()" class="flex-1 btn-premium">
+                        Get License
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showLicenseModal() {
+            document.getElementById('licenseModal').classList.remove('hidden');
+        }
+        
+        function hideLicenseModal() {
+            document.getElementById('licenseModal').classList.add('hidden');
+        }
+        
+        function getLicense() {
+            alert('License key generation will be implemented with payment processing.');
+            hideLicenseModal();
+        }
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
